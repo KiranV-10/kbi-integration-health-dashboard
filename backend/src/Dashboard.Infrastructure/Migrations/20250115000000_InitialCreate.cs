@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -5,6 +6,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Dashboard.Infrastructure.Migrations;
 
+[DbContext(typeof(Data.DashboardDbContext))]
+[Migration("20250115000000_InitialCreate")]
 public partial class InitialCreate : Migration
 {
     protected override void Up(MigrationBuilder migrationBuilder)
