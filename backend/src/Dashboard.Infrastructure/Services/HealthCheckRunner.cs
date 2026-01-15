@@ -61,7 +61,15 @@ public class HealthCheckRunner : IHealthCheckRunner
 
         if (IsSimulatedEndpoint(service.BaseUrl))
         {
-            return CreateSimulatedResult(service.Id, checkedAt);
+            return new HealthCheckResult
+            {
+                ServiceEndpointId = service.Id,
+                CheckedAtUtc = checkedAt,
+                Status = HealthStatus.Down,
+                LatencyMs = (int)stopwatch.ElapsedMilliseconds,
+                HttpStatusCode = null,
+                ErrorMessage = $"Request failed: {ex.Message}"
+            };
         }
 
         using var request = new HttpRequestMessage(HttpMethod.Get, service.BaseUrl);
@@ -94,7 +102,15 @@ public class HealthCheckRunner : IHealthCheckRunner
         catch (Exception ex)
         {
             stopwatch.Stop();
-            return CreateSimulatedResult(service.Id, checkedAt, $"Simulated after error: {ex.Message}");
+            return new HealthCheckResult
+            {
+                ServiceEndpointId = service.Id,
+                CheckedAtUtc = checkedAt,
+                Status = HealthStatus.Down,
+                LatencyMs = (int)stopwatch.ElapsedMilliseconds,
+                HttpStatusCode = null,
+                ErrorMessage = $"Request failed: {ex.Message}"
+            };
         }
     }
 
