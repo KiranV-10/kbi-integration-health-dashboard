@@ -6,7 +6,7 @@ using Dashboard.Infrastructure.Data;
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 
-Env.Load();
+Env.Load(ResolveEnvPath());
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,3 +51,34 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+string ResolveEnvPath()
+{
+    var candidates = new[]
+    {
+        Path.Combine(Directory.GetCurrentDirectory(), ".env"),
+        Path.Combine(AppContext.BaseDirectory, ".env")
+    };
+
+    foreach (var candidate in candidates)
+    {
+        if (File.Exists(candidate))
+        {
+            return candidate;
+        }
+    }
+
+    var directory = new DirectoryInfo(AppContext.BaseDirectory);
+    while (directory is not null)
+    {
+        var path = Path.Combine(directory.FullName, ".env");
+        if (File.Exists(path))
+        {
+            return path;
+        }
+
+        directory = directory.Parent;
+    }
+
+    return ".env";
+}
