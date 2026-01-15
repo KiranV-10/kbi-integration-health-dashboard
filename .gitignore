@@ -1,0 +1,42 @@
+# Environment files
+.env
+.env.*
+*.env
+.env.local
+.env.development
+.env.production
+
+# Backend secrets/config overrides
+appsettings.*.json
+!appsettings.json
+
+# Build outputs
+**/bin/
+**/obj/
+**/dist/
+**/build/
+
+# Node modules
+**/node_modules/
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Test coverage
+**/coverage/
+**/*.coverage
+**/*.coveragexml
+**/TestResults/
+
+# Cursor files
+.cursor/
+.cursorignore
+
+# Internal planning documents
+PRD.md
