@@ -22,6 +22,7 @@ This project avoids committed secrets and connection strings. Configure locally 
 Backend:
 - Set `ConnectionStrings__DefaultConnection` to your PostgreSQL connection string.
 - Example format: `Host=<host>;Port=<port>;Database=<db>;Username=<user>;Password=<password>`
+- You can also set this in a root `.env` file (loaded by the API at startup).
 
 Frontend:
 - Set `VITE_API_BASE_URL` to the backend API base URL (for example, `http://localhost:5000`).

@@ -3,7 +3,10 @@ using Dashboard.Application;
 using Dashboard.Application.Abstractions;
 using Dashboard.Infrastructure;
 using Dashboard.Infrastructure.Data;
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
