@@ -35,7 +35,6 @@ Docker (PostgreSQL):
    - `docker-compose up -d`
 2. Apply migrations:
    - `dotnet tool install --global dotnet-ef`
-   - `dotnet ef migrations add InitialCreate --project backend/src/Dashboard.Infrastructure --startup-project backend/src/Dashboard.Api`
    - `dotnet ef database update --project backend/src/Dashboard.Infrastructure --startup-project backend/src/Dashboard.Api`
 3. Start the API:
    - `dotnet run --project backend/src/Dashboard.Api`
