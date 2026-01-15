@@ -37,6 +37,7 @@ Thumbs.db
 # Cursor files
 .cursor/
 .cursorignore
+.cursorrules
 
 # Internal planning documents
 PRD.md
