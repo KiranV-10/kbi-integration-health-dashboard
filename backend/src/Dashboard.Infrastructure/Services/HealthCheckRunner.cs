@@ -61,15 +61,7 @@ public class HealthCheckRunner : IHealthCheckRunner
 
         if (IsSimulatedEndpoint(service.BaseUrl))
         {
-            return new HealthCheckResult
-            {
-                ServiceEndpointId = service.Id,
-                CheckedAtUtc = checkedAt,
-                Status = HealthStatus.Down,
-                LatencyMs = (int)stopwatch.ElapsedMilliseconds,
-                HttpStatusCode = null,
-                ErrorMessage = $"Request failed: {ex.Message}"
-            };
+            return CreateSimulatedResult(service.Id, checkedAt);
         }
 
         using var request = new HttpRequestMessage(HttpMethod.Get, service.BaseUrl);
